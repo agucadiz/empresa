@@ -10,8 +10,14 @@
 
 <body>
     <?php
-    $desde_codigo = (isset($_GET['desde_codigo'])) ? trim($_GET['desde_codigo']) : null;
-    $hasta_codigo = (isset($_GET['hasta_codigo'])) ? trim($_GET['hasta_codigo']) : null;
+    $pdo = new PDO('pgsql:host=localhost;dbname=empresa', 'empresa', 'empresa');
+    $minimo = $pdo->query('SELECT min(codigo) FROM departamentos');
+    $min = $minimo->fetchColumn();
+    $maximo = $pdo->query('SELECT max(codigo) FROM departamentos');
+    $max = $maximo->fetchColumn();
+
+    $desde_codigo = (isset($_GET['desde_codigo'])) ? trim($_GET['desde_codigo']) : $min;
+    $hasta_codigo = (isset($_GET['hasta_codigo'])) ? trim($_GET['hasta_codigo']) : $max;
     ?>
 
     <div>
@@ -30,12 +36,17 @@
                         <input type="text" name="hasta_codigo" size="8" value="<?= $hasta_codigo ?>">
                     </label>
                 </p>
+                <p>
+                    <label>
+                        Denominación:
+                        <input type="text" name="denominacion" size="8" value="">
+                    </label>
+                </p>
                 <button type="submit">Buscar</button>
             </fieldset>
         </form>
     </div>
     <?php
-    $pdo = new PDO('pgsql:host=localhost;dbname=empresa', 'empresa', 'empresa');
     $pdo->beginTransaction();
     $sent = $pdo->query('LOCK TABLE departamentos IN SHARE MODE');
     $sent = $pdo->prepare('SELECT COUNT(*) 
