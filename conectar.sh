@@ -1,3 +1,3 @@
 #!/bin/sh
 
-psql -h localhost -U empresa -d empresa
+psql -h localhost -d empresa -U empresa

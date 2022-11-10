@@ -1,3 +1,3 @@
 #!/bin/sh
 
-psql -h localhost -U empresa < empresa.sql
+psql -h localhost -d empresa -U empresa < comunes/empresa.sql
