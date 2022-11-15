@@ -184,8 +184,8 @@ function css_campo_error($campo, $error)
 function cabecera()
 { ?>
     <nav style="margin: 4px; padding: 4px; text-align: right; border: 1px solid;">
-        <a href="/empleados/">Empleados</a>
-        <a href="/departamentos/">Departamentos</a>
+        <a href="/empleados/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Empleados</a>
+        <a href="/departamentos/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Departamentos</a>
     </nav><?php
 }
 

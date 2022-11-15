@@ -60,7 +60,8 @@
         }
     }
 
-    //Aquí se ha dejado.
+    //Aquí se ha dejado. Arreglando el insertar departamentos a través del insertar empleados.
+    
 
     cabecera();
     ?>
