@@ -60,19 +60,19 @@ function comprobar_parametros(array $par): bool
     return true;
 }
 
-function validar_codigo($codigo, &$error)
+function validar_codigo($numero, &$error)
 {
-    validar_digitos($codigo, 'codigo', $error);
-    validar_rango_numerico($codigo, 'codigo', 0, 99, $error);
-    validar_numerico($codigo, 'codigo', $error);
+    validar_digitos($numero, 'numero', $error);
+    validar_rango_numerico($numero, 'numero', 0, 99, $error);
+    validar_numerico($numero, 'numero', $error);
     //validar_existe.
     //validar_longitud.
     //validar número.
 }
 
-function validar_denominacion($denominacion, &$error)
+function validar_denominacion($nombre, &$error)
 {
-    validar_longitud($denominacion, 'denominacion', 1, 255, $error);
+    validar_longitud($nombre, 'denominacion', 1, 255, $error);
 }
 
 function validar_digitos($numero, $campo, &$error): bool
@@ -193,7 +193,7 @@ function mostrar_errores($campo, $error)
 
         function cabecera()
         { ?>
-    <nav style="margin: 10px; padding: 4px; text-align: right; border: 1px solid;">
+    <nav style="padding: 4px; text-align: right; border: 1.5px solid;" class="container mx-auto">
         <a href="/empleados/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Empleados</a>
         <a href="/departamentos/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Departamentos</a>
     </nav><?php

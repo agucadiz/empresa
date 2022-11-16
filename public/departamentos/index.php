@@ -29,19 +29,19 @@
     <div class="container mx-auto">
         <form action="" method="get">
             <h3>Criterios de búsqueda</h3>
-            <div class="mb-4">
+            <div class="mb-2">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Desde código:
                     <input type="text" name="desde_codigo" value="<?= hh($desde_codigo) ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </label>
             </div>
-            <div class="mb-4">
+            <div class="mb-2">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Hasta código:
                     <input type="text" name="hasta_codigo" value="<?= hh($hasta_codigo) ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </label>
             </div>
-            <div class="mb-4">
+            <div class="mb-2">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Denominación:
                     <input type="text" name="denominacion" value="<?= hh($denominacion) ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
