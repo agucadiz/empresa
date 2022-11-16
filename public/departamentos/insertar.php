@@ -1,6 +1,7 @@
 <?php session_start() ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,11 +19,12 @@
         }
     </style>
 </head>
+
 <body>
     <?php
     require 'auxiliar.php';
 
-/*     try {
+/*         try {
         $error = [];
         $codigo = obtener_post('codigo');
         $denominacion = obtener_post('denominacion');
@@ -60,9 +62,6 @@
         }
     }
 
-    //Aquí se ha dejado. Arreglando el insertar departamentos a través del insertar empleados.
-    
-
     cabecera();
     ?>
     <div>
@@ -71,8 +70,8 @@
             <div>
                 <label <?= css_campo_error('codigo', $error) ?>>
                     Código:
-                    <input type="text" name="codigo" size="10"
-                    value="<?= $codigo ?>"
+                    <input type="text" name="codigo" size="10" 
+                    value="<?= $codigo ?>" 
                     <?= css_campo_error('codigo', $error) ?>
                     >
                 </label>
@@ -81,8 +80,8 @@
             <div>
                 <label <?= css_campo_error('denominacion', $error) ?>>
                     Denominación:
-                    <input type="text" name="denominacion"
-                    value="<?= $denominacion ?>"
+                    <input type="text" name="denominacion" 
+                    value="<?= $denominacion ?>" 
                     <?= css_campo_error('denominacion', $error) ?>
                     >
                 </label>
@@ -95,4 +94,5 @@
         </form>
     </div>
 </body>
+
 </html>

@@ -59,12 +59,22 @@ function comprobar_parametros(array $par): bool
 
     return true;
 }
-function validar_codigo($numero, $error){
+
+function validar_codigo($numero, &$error)
+{
     validar_digitos($numero, 'numero', $error);
-    validar_rango_numerico($numero,'numero', 0, 99, $error);
-    //validar_existe
-    //validar_longitud
+    validar_rango_numerico($numero, 'numero', 0, 99, $error);
+    validar_numerico($numero, 'numero', $error);
+    //validar_existe.
+    //validar_longitud.
+    //validar número.
 }
+
+function validar_denominacion($nombre, &$error)
+{
+    validar_longitud($nombre, 'denominacion', 1, 255, $error);
+}
+
 function validar_digitos($numero, $campo, &$error): bool
 {
     if (!ctype_digit($numero)) {
@@ -155,82 +165,81 @@ function mostrar_errores($campo, $error)
             <ul <?= css_error($campo, $error) ?>>
                 <li><?= $mensaje ?></li>
             </ul><?php
+                }
+            }
         }
-    }
-}
 
-function comprobar_params($codigo, $denominacion)
-{
-    if (!isset($codigo, $denominacion)) {
-        throw new Exception();
-    }
-}
+        function comprobar_params($codigo, $denominacion)
+        {
+            if (!isset($codigo, $denominacion)) {
+                throw new Exception();
+            }
+        }
 
-function hay_errores($error)
-{
-    return !empty($error);
-}
+        function hay_errores($error)
+        {
+            return !empty($error);
+        }
 
-function css_error($campo, $error)
-{
-    return isset($error[$campo]) ? 'class="error"' : '';
-}
+        function css_error($campo, $error)
+        {
+            return isset($error[$campo]) ? 'class="error"' : '';
+        }
 
-function css_campo_error($campo, $error)
-{
-    return isset($error[$campo]) ? 'class="campo-error"' : '';
-}
+        function css_campo_error($campo, $error)
+        {
+            return isset($error[$campo]) ? 'class="campo-error"' : '';
+        }
 
-function cabecera()
-{ ?>
+        function cabecera()
+        { ?>
     <nav style="margin: 4px; padding: 4px; text-align: right; border: 1px solid;">
         <a href="/empleados/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Empleados</a>
         <a href="/departamentos/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Departamentos</a>
     </nav><?php
-}
+        }
 
-function selected($a, $b)
-{
-    return $a == $b ? 'selected' : '';
-}
+        function selected($a, $b)
+        {
+            return $a == $b ? 'selected' : '';
+        }
 
-function hh($x)
-{
-    return htmlspecialchars($x ?? '', ENT_QUOTES | ENT_SUBSTITUTE);
-}
+        function hh($x)
+        {
+            return htmlspecialchars($x ?? '', ENT_QUOTES | ENT_SUBSTITUTE);
+        }
 
-function pie()
-{
-    if (isset($_COOKIE['acepta_cookies'])) {
-        return;
-    } ?>
+        function pie()
+        {
+            if (isset($_COOKIE['acepta_cookies'])) {
+                return;
+            } ?>
     <form action="/comunes/cookies.php" method="get" style="border: 1px solid; margin-top: 1em; padding: 0.5ex 1.5ex">
         <p align="right">
             Este sitio usa cookies.
             <button type="submit">Aceptar</button>
         </p>
     </form><?php
-}
+        }
 
-function token_csrf()
-{
-    $token_csrf = sesion_csrf();
-    ?>
-    <input type="hidden"
-           name="token_csrf" value="<?= $token_csrf ?>"><?php
-}
+        function token_csrf()
+        {
+            $token_csrf = sesion_csrf();
+            ?>
+    <input type="hidden" name="token_csrf" value="<?= $token_csrf ?>"><?php
+                                                                    }
 
-function sesion_csrf()
-{
-    // TODO: Expiración del token de sesión
-    if (!isset($_SESSION['token_csrf'])) {
-        $_SESSION['token_csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
-        // $_SESSION['token_csrf_time'] = time();
-    } // else if (time() - $_SESSION['token_csrf_time'] > )
-    return $_SESSION['token_csrf'];
-}
+                                                                    function sesion_csrf()
+                                                                    {
+                                                                        // TODO: Expiración del token de sesión
+                                                                        if (!isset($_SESSION['token_csrf'])) {
+                                                                            $_SESSION['token_csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
+                                                                            // $_SESSION['token_csrf_time'] = time();
+                                                                        } // else if (time() - $_SESSION['token_csrf_time'] > )
+                                                                        return $_SESSION['token_csrf'];
+                                                                    }
 
-function comprobar_csrf(): bool
-{
-    return obtener_post('token_csrf') === $_SESSION['token_csrf'];
-}
+                                                                    function comprobar_csrf(): bool
+                                                                    {
+                                                                        return obtener_post('token_csrf') === $_SESSION['token_csrf'];
+                                                                    }
