@@ -42,7 +42,6 @@
     } */
 
     const PAR = [
-        'id',
         'codigo',
         'denominacion',
     ];
@@ -54,10 +53,10 @@
     $error = [];
 
     if (comprobar_parametros($par)) {
-        validar_codigo($numero, $error);
-        validar_denominacion($nombre, $error);
+        validar_codigo($codigo, $error);
+        validar_denominacion($denominacion, $error);
         if (!hay_errores($error)) {
-            insertar_departamento($par, $pdo);
+            insertar_departamento($codigo, $denominacion);
             return volver_principal();
         }
     }

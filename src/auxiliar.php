@@ -60,19 +60,19 @@ function comprobar_parametros(array $par): bool
     return true;
 }
 
-function validar_codigo($numero, &$error)
+function validar_codigo($codigo, &$error)
 {
-    validar_digitos($numero, 'numero', $error);
-    validar_rango_numerico($numero, 'numero', 0, 99, $error);
-    validar_numerico($numero, 'numero', $error);
+    validar_digitos($codigo, 'codigo', $error);
+    validar_rango_numerico($codigo, 'codigo', 0, 99, $error);
+    validar_numerico($codigo, 'codigo', $error);
     //validar_existe.
     //validar_longitud.
     //validar número.
 }
 
-function validar_denominacion($nombre, &$error)
+function validar_denominacion($denominacion, &$error)
 {
-    validar_longitud($nombre, 'denominacion', 1, 255, $error);
+    validar_longitud($denominacion, 'denominacion', 1, 255, $error);
 }
 
 function validar_digitos($numero, $campo, &$error): bool
