@@ -17,7 +17,7 @@
         return volver_principal();
     }
 
-    try {
+    /* try {
         $error = [];
         $codigo = obtener_post('codigo');
         $denominacion = obtener_post('denominacion');
@@ -53,7 +53,46 @@
             return volver_principal();
         }
         extract($fila);
+    } */
+    const PAR = [
+        'codigo',
+        'denominacion',
+    ];
+
+    $par = obtener_parametros(PAR, $_POST);
+    extract($par);
+
+    $pdo = conectar();
+    $error = [];
+
+    if (comprobar_parametros($par)) {
+        validar_codigo($codigo, $error);
+        validar_denominacion($denominacion, $error);
+        if (!hay_errores($error)) {
+            $sent = $pdo->prepare("UPDATE departamentos
+                                  SET codigo = :codigo,
+                                      denominacion = :denominacion
+                                WHERE id = :id");
+        $sent->execute([
+            ':codigo' => $codigo,
+            ':denominacion' => $denominacion,
+            ':id' => $id]);
+        }
+        return volver_principal();
+    } else {
+        $pdo = conectar();
+        $sent = $pdo->prepare("SELECT codigo, denominacion
+                                 FROM departamentos
+                                WHERE id = :id");
+        $sent->execute([':id' => $id]);
+        $fila = $sent->fetch();
+
+        if (empty($fila)) {
+            return volver_principal();
+        }
+        extract($fila);
     }
+
 
     cabecera();
     ?>
