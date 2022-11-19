@@ -71,7 +71,6 @@
         extract($fila);
     }
 
-
     cabecera();
     ?>
     <div>
@@ -79,28 +78,40 @@
             <div>
                 <label <?= css_campo_error('numero', $error) ?>>
                     Número:
-                    <input type="text" name="numero" size="10" value="<?= $numero ?>" <?= css_campo_error('numero', $error) ?>>
+                    <input type="text" name="numero" size="10" 
+                    value="<?= $numero ?>" 
+                    <?= css_campo_error('numero', $error) ?>
+                    >
                 </label>
                 <?php mostrar_errores('numero', $error) ?>
             </div>
             <div>
                 <label <?= css_campo_error('nombre', $error) ?>>
                     Nombre:
-                    <input type="text" name="nombre" value="<?= $nombre ?>" <?= css_campo_error('nombre', $error) ?>>
+                    <input type="text" name="nombre" 
+                    value="<?= $nombre ?>" 
+                    <?= css_campo_error('nombre', $error) ?>
+                    >
                 </label>
                 <?php mostrar_errores('nombre', $error) ?>
             </div>
             <div>
                 <label <?= css_campo_error('salario', $error) ?>>
                     Salario:
-                    <input type="text" name="salario" value="<?= $salario ?>" <?= css_campo_error('salario', $error) ?>>
+                    <input type="text" name="salario" 
+                    value="<?= $salario ?>" 
+                    <?= css_campo_error('salario', $error) ?>
+                    >
                 </label>
                 <?php mostrar_errores('salario', $error) ?>
             </div>
             <div>
                 <label <?= css_campo_error('fecha_nac', $error) ?>>
                     Fecha de nacimiento:
-                    <input type="date" name="fecha_nac" value="<?= $fecha_nac ?>" <?= css_campo_error('fecha_nac', $error) ?>>
+                    <input type="date" name="fecha_nac" 
+                    value="<?= $fecha_nac ?>" 
+                    <?= css_campo_error('fecha_nac', $error) ?>
+                    >
                 </label>
                 <?php mostrar_errores('fecha_nac', $error) ?>
             </div>
@@ -121,7 +132,7 @@
                 <?php mostrar_errores('departamento_id', $error) ?>
             </div>
             <div>
-                <button type="submit">Insertar</button>
+                <button type="submit">Modificar</button>
                 <a href="index.php">Cancelar</a>
             </div>
         </form>
