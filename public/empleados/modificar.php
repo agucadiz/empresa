@@ -34,7 +34,7 @@
     $error = [];
     
     if (comprobar_parametros($par)) {
-        validar_numero($numero, $error);
+        validar_numero_emple($numero, $error);
         validar_nombre($nombre, $error);
         validar_salario($salario, $error);
         validar_fecha_nac($fecha_nac, $error);
@@ -64,7 +64,6 @@
                                 WHERE id = :id");
         $sent->execute([':id' => $id]);
         $fila = $sent->fetch();
-
         if (empty($fila)) {
             return volver_principal();
         }
@@ -120,10 +119,11 @@
                     Departamento:
                     <select name="departamento_id">
                         <?php foreach ($departamentos as $departamento) : ?>
-                            <option value="<?= $departamento['id'] ?>" <?= selected(
-                                                                            $departamento['id'],
-                                                                            $departamento_id
-                                                                        ) ?>>
+                            <option value="<?= $departamento['id'] ?>" 
+                                    <?= selected(
+                                        $departamento['id'],
+                                        $departamento_id) ?>
+                            >
                                 <?= $departamento['denominacion'] ?>
                             </option>
                         <?php endforeach ?>

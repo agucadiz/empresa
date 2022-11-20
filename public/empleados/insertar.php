@@ -35,7 +35,7 @@
 
     $pdo = conectar();
     $error = [];
-    var_dump($par);
+
     if (comprobar_parametros($par)) {
         validar_numero($numero, $error);
         validar_nombre($nombre, $error);

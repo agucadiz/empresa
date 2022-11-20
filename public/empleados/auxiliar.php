@@ -11,6 +11,12 @@ function validar_numero($numero, &$error)
     }
 }
 
+function validar_numero_emple($numero, &$error)
+{
+    validar_digitos($numero, 'numero', $error);
+    validar_longitud($numero, 'numero', 1, 4, $error);
+}
+
 function validar_nombre($nombre, &$error)
 {
     validar_longitud($nombre, 'nombre', 1, 255, $error);
