@@ -12,7 +12,7 @@
 
 <body>
     <?php
-    require 'auxiliar.php';
+    require '../../src/auxiliar.php';
 
     const FMT_FECHA = 'Y-m-d H:i:s';
     ?>
@@ -122,6 +122,7 @@
             <a href="insertar.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Insertar un nuevo empleado</a>
         </div>
     </div>
+    <?php pie() ?>
     <script src="../js/flowbite/flowbite.js"></script>
 </body>
 
