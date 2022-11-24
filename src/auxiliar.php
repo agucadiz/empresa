@@ -193,10 +193,10 @@ function mostrar_errores($campo, $error)
 
         function cabecera()
         { ?>
-    <nav style="padding: 4px; text-align: right; border: 1.5px solid;" class="container mx-auto">
-        <a href="/empleados/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Empleados</a>
-        <a href="/departamentos/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Departamentos</a>
-    </nav><?php
+            <nav style="padding: 4px; text-align: right; border: 1.5px solid;" class="container mx-auto">
+                <a href="/empleados/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Empleados</a>
+                <a href="/departamentos/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Departamentos</a>
+            </nav><?php
         }
 
         function selected($a, $b)
@@ -214,32 +214,33 @@ function mostrar_errores($campo, $error)
             if (isset($_COOKIE['acepta_cookies'])) {
                 return;
             } ?>
-    <form action="/src/cookies.php" method="get" style="border: 1px solid; margin-top: 1em; padding: 0.5ex 1.5ex">
-        <p align="right">
-            Este sitio usa cookies.
-            <button type="submit">Aceptar</button>
-        </p>
-    </form><?php
+            <form action="/src/cookies.php" method="get" style="border: 1px solid; margin-top: 1em; padding: 0.5ex 1.5ex">
+                <p align="right">
+                    Este sitio usa cookies.
+                     <button type="submit">Aceptar</button>
+            </p>
+            </form><?php
         }
 
         function token_csrf()
         {
             $token_csrf = sesion_csrf();
             ?>
-    <input type="hidden" name="token_csrf" value="<?= $token_csrf ?>"><?php
-                                                                    }
+            <input type="hidden"
+             name="token_csrf" value="<?= $token_csrf ?>"><?php
+        }
 
-                                                                    function sesion_csrf()
-                                                                    {
-                                                                        // TODO: Expiración del token de sesión
-                                                                        if (!isset($_SESSION['token_csrf'])) {
-                                                                            $_SESSION['token_csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
-                                                                            // $_SESSION['token_csrf_time'] = time();
-                                                                        } // else if (time() - $_SESSION['token_csrf_time'] > )
-                                                                        return $_SESSION['token_csrf'];
-                                                                    }
+        function sesion_csrf()
+        {
+            // TODO: Expiración del token de sesión
+            if (!isset($_SESSION['token_csrf'])) {
+                $_SESSION['token_csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
+                // $_SESSION['token_csrf_time'] = time();
+            } // else if (time() - $_SESSION['token_csrf_time'] > )
+            return $_SESSION['token_csrf'];
+        }
 
-                                                                    function comprobar_csrf(): bool
-                                                                    {
-                                                                        return obtener_post('token_csrf') === $_SESSION['token_csrf'];
-                                                                    }
+        function comprobar_csrf(): bool
+        {
+            return obtener_post('token_csrf') === $_SESSION['token_csrf'];
+        }
