@@ -71,6 +71,11 @@
     }
 
     cabecera();
+    
+    $sent = $pdo->query("SELECT id, denominacion
+                           FROM departamentos
+                       ORDER BY denominacion");
+    $departamentos = $sent->fetchAll();
     ?>
     <div>
         <form action="" method="post">
@@ -107,7 +112,7 @@
             <div>
                 <label <?= css_campo_error('fecha_nac', $error) ?>>
                     Fecha de nacimiento:
-                    <input type="date" name="fecha_nac" 
+                    <input type="text" name="fecha_nac" 
                     value="<?= $fecha_nac ?>" 
                     <?= css_campo_error('fecha_nac', $error) ?>
                     >
@@ -120,9 +125,7 @@
                     <select name="departamento_id">
                         <?php foreach ($departamentos as $departamento) : ?>
                             <option value="<?= $departamento['id'] ?>" 
-                                    <?= selected(
-                                        $departamento['id'],
-                                        $departamento_id) ?>
+                                    <?= selected($departamento['id'],$departamento_id) ?>
                             >
                                 <?= $departamento['denominacion'] ?>
                             </option>

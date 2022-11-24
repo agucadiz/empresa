@@ -214,7 +214,7 @@ function mostrar_errores($campo, $error)
             if (isset($_COOKIE['acepta_cookies'])) {
                 return;
             } ?>
-            <form action="/src/cookies.php" method="get" style="border: 1px solid; margin-top: 1em; padding: 0.5ex 1.5ex">
+            <form action="cookies.php" method="get" style="border: 1px solid; margin-top: 1em; padding: 0.5ex 1.5ex">
                 <p align="right">
                     Este sitio usa cookies.
                      <button type="submit">Aceptar</button>
