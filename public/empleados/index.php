@@ -16,55 +16,11 @@
 
     const FMT_FECHA = 'Y-m-d H:i:s';
     ?>
-    <!--
-    <div>
-        <form action="" method="get">
-            <fieldset>
-                <legend>Criterios de búsqueda</legend>
-                <p>
-                    <label>
-                        Desde código:
-                        <input type="text" name="desde_codigo" size="8" value="<?= $desde_codigo ?>">
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Hasta código:
-                        <input type="text" name="hasta_codigo" size="8" value="<?= $hasta_codigo ?>">
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Denominación:
-                        <input type="text" name="denominacion" value="<?= $denominacion ?>">
-                    </label>
-                </p>
-                <button type="submit">Buscar</button>
-            </fieldset>
-        </form>
-    </div>
-    -->
+
     <?php
     $pdo = conectar();
     $pdo->beginTransaction();
     $pdo->exec('LOCK TABLE empleados IN SHARE MODE');
-    /*
-    $where = [];
-    $execute = [];
-    if (isset($desde_codigo) && $desde_codigo != '') {
-        $where[] = 'codigo >= :desde_codigo';
-        $execute[':desde_codigo'] = $desde_codigo;
-    }
-    if (isset($hasta_codigo) && $hasta_codigo != '') {
-        $where[] = 'codigo <= :hasta_codigo';
-        $execute[':hasta_codigo'] = $hasta_codigo;
-    }
-    if (isset($denominacion) && $denominacion != '') {
-        $where[] = 'lower(denominacion) LIKE lower(:denominacion)';
-        $execute[':denominacion'] = "%$denominacion%";
-    }
-    $where = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
-    */
     $where = '';
     $execute = [];
     $sent = $pdo->prepare("SELECT COUNT(*)
@@ -81,24 +37,20 @@
     $sent->execute($execute);
     $pdo->commit();
     $nf = new NumberFormatter('es_ES', NumberFormatter::CURRENCY);
-    // $df = new IntlDateFormatter(
-    //     'es_ES',
-    //     IntlDateFormatter::LONG,
-    //     IntlDateFormatter::NONE,
-    //     'Europe/Madrid'
-    // );
+
     cabecera();
     ?>
+
     <br>
+
     <div class="container mx-auto">
         <div class="overflow-x-auto relative mt-4">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <table class="mx-auto text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <th scope="col" class="py-3 px-6">Número</th>
                     <th scope="col" class="py-3 px-6">Nombre</th>
                     <th scope="col" class="py-3 px-6">Salario</th>
-                    <th scope="col" class="py-3 px-6" Fecha de nac.</th>
-                    <th scope="col" class="py-3 px-6" Departamento</th>
+                    <th scope="col" class="py-3 px-6">Fecha de nac.</th>
                     <th colspan="2" scope="col" class="py-3 px-6 text-center">Acciones</th>
                 </thead>
                 <tbody>
@@ -112,8 +64,8 @@
                                                         $fila['fecha_nac'],
                                                         new DateTimeZone('Europe/Madrid')
                                                     )->format('d-m-Y') ?></td>
-                            <td class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-1 py-1 mr-1 mb-1 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800 text-center"><a href="confirmar_borrado.php?id=<?= $fila['id'] ?>">Borrar</a></td>
-                            <td class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-1 py-1 mr-1 mb-1 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800 text-center"><a href="modificar.php?id=<?= $fila['id'] ?>">Modificar</a></td>
+                            <td class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"><a href="modificar.php?id=<?= $fila['id'] ?>">Editar</a></td>
+                            <td class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><a href="confirmar_borrado.php?id=<?= $fila['id'] ?>">Borrar</a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
