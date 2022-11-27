@@ -194,6 +194,7 @@ function mostrar_errores($campo, $error)
         function cabecera()
         { ?>
             <nav style="padding: 4px; text-align: right; border: 1.5px solid;" class="container mx-auto">
+                <a href="/index.php/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Inicio</a>
                 <a href="/empleados/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Empleados</a>
                 <a href="/departamentos/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Departamentos</a>
             </nav><?php

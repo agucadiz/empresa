@@ -73,8 +73,8 @@
             <p>Número total de filas: <?= $total ?></p>
             <a href="insertar.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Insertar un nuevo empleado</a>
         </div>
+        <?php pie() ?>
     </div>
-    <?php pie() ?>
     <script src="../js/flowbite/flowbite.js"></script>
 </body>
 
